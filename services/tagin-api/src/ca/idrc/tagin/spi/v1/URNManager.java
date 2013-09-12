@@ -13,6 +13,13 @@ public class URNManager {
 	
 	private static TaginDao dao;
 	
+	/**
+	 * Generates a URN to identify the passed fingerprint.
+	 * A new URN is created if the fingerprint does not share any beacon with other fingerprints.
+	 * If it does, it is merged into its closest neighbour, and they share the same URN.
+	 * @param taginDao
+	 * @param fp
+	 */
 	public static void generateURN(TaginDao taginDao, Fingerprint fp) {
 		dao = taginDao;
 		List<Neighbour> neighbours = fp.findCloseNeighbours();
@@ -33,6 +40,11 @@ public class URNManager {
 		}
 	}
 	
+	/**
+	 * Performs a vectorial translation on the fingerprint's neighbours
+	 * @param fp
+	 * @param changeVector
+	 */
 	private static void pushAwayNeighbours(Fingerprint fp, List<Beacon> changeVector) {
 		List<Neighbour> neighbours = fp.findCloseNeighbours();
 		for (Neighbour n : neighbours) {

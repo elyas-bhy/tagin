@@ -19,6 +19,10 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 public class FingerprintEndpoints {
 
 
+	/**
+	 * Endpoint method that returns a list of all stored fingerprints
+	 * @return
+	 */
 	@ApiMethod(
 			name = "fingerprints.list",
 			path = "fingerprints",
@@ -31,6 +35,11 @@ public class FingerprintEndpoints {
 		return fingerprints;
 	}
 
+	/**
+	 * Endpoint method that retrieves a fingerprint with the specified ID
+	 * @param id the fingerprint's ID
+	 * @return the matching fingerprint if found, or null.
+	 */
 	@ApiMethod(
 			name = "fingerprints.get",
 			path = "fingerprints/{fingerprint_id}",

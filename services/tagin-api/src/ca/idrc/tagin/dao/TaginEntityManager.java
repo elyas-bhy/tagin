@@ -37,6 +37,9 @@ public class TaginEntityManager implements TaginDao {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String persistPattern(Pattern pattern) {
 		Fingerprint fp = new Fingerprint(pattern);
@@ -45,6 +48,9 @@ public class TaginEntityManager implements TaginDao {
 		return fp.getUrn();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void persistFingerprint(Fingerprint fp) {
 		mEntityManager.getTransaction().begin();
@@ -54,6 +60,9 @@ public class TaginEntityManager implements TaginDao {
 		mEntityManager.getTransaction().commit();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pattern> listPatterns() {
@@ -65,6 +74,9 @@ public class TaginEntityManager implements TaginDao {
 		return patterns;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Fingerprint> listFingerprints() {
@@ -73,6 +85,9 @@ public class TaginEntityManager implements TaginDao {
 		return fingerprints;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Pattern getPattern(Long id) {
 		Pattern p = findPattern(id);
@@ -81,6 +96,9 @@ public class TaginEntityManager implements TaginDao {
 		return p;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Fingerprint getFingerprint(Long id) {
 		Fingerprint fp = mEntityManager.find(Fingerprint.class, id);
@@ -89,6 +107,9 @@ public class TaginEntityManager implements TaginDao {
 		return fp;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public Fingerprint getFingerprint(String urn) {
 		if (mFingerprintCache.containsKey(urn)) {
@@ -97,6 +118,9 @@ public class TaginEntityManager implements TaginDao {
 		return findFingerprint(urn);
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Neighbour> getNeighbours(Fingerprint fp) {
@@ -120,6 +144,9 @@ public class TaginEntityManager implements TaginDao {
 		return neighbours;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public List<URN> fetchNumOfNeighbours(Fingerprint fp, Integer maxCount) {
 		Map<String,URN> neighbours = new LinkedHashMap<String,URN>();
@@ -138,6 +165,14 @@ public class TaginEntityManager implements TaginDao {
 		}
 	}
 	
+	/**
+	 * Helper method for {@link fetchNumOfNeighbours(Fingerprint, Integer)}
+	 * @param initialURN 
+	 * @param index
+	 * @param maxCount
+	 * @param neighbours
+	 * @return
+	 */
 	private List<URN> fetchNumOfNeighboursAux(String initialURN, int index, Integer maxCount, Map<String, URN> neighbours) {
 		List<URN> urns = new ArrayList<URN>(neighbours.values());
 		Fingerprint fp = getFingerprint(urns.get(index).getValue());
@@ -158,6 +193,11 @@ public class TaginEntityManager implements TaginDao {
 		}
 	}
 	
+	/**
+	 * Retrieves a pattern with the specified ID
+	 * @param id
+	 * @return the matching fingerprint if found, or null.
+	 */
 	@SuppressWarnings("unchecked")
 	private Pattern findPattern(Long id) {
 		Pattern p = null;
@@ -169,6 +209,11 @@ public class TaginEntityManager implements TaginDao {
 		return p;
 	}
 	
+	/**
+	 * Retrieves a fingerprint with the specified URN
+	 * @param urn
+	 * @return the matching fingerprint if found, or null.
+	 */
 	@SuppressWarnings("unchecked")
 	private Fingerprint findFingerprint(String urn) {
 		Fingerprint fp = null;
@@ -180,6 +225,9 @@ public class TaginEntityManager implements TaginDao {
 		return fp;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void removePattern(Long id) {
 		Pattern p = findPattern(id);
@@ -189,6 +237,9 @@ public class TaginEntityManager implements TaginDao {
 		}
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void removeFingerprint(String urn) {
 		Fingerprint fp = findFingerprint(urn);
@@ -196,16 +247,25 @@ public class TaginEntityManager implements TaginDao {
 			mEntityManager.remove(fp);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void close() {
 		mEntityManager.close();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void beginTransaction() {
 		mEntityManager.getTransaction().begin();
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void commitTransaction() {
 		mEntityManager.getTransaction().commit();

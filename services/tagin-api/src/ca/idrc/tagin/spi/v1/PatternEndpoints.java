@@ -19,6 +19,11 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 )
 public class PatternEndpoints {
 
+	/**
+	 * Endpoint method that returns a URN corresponding to the pattern passed.
+	 * @param pattern 
+	 * @return
+	 */
 	@ApiMethod(
 			name = "patterns.add",
 			path = "patterns",
@@ -31,6 +36,10 @@ public class PatternEndpoints {
 		return new URN(urn);
 	}
 
+	/**
+	 * Endpoint method that returns a list of all stored patterns.
+	 * @return
+	 */
 	@ApiMethod(
 			name = "patterns.list",
 			path = "patterns",
@@ -43,6 +52,11 @@ public class PatternEndpoints {
 		return patterns;
 	}
 	
+	/**
+	 * Endpoint method that retrieves a pattern with the specified ID.
+	 * @param id
+	 * @return the matching pattern if found, or null.
+	 */
 	@ApiMethod(
 			name = "patterns.get",
 			path = "patterns/{pattern_id}",
@@ -55,6 +69,10 @@ public class PatternEndpoints {
 		return p;
 	}
 	
+	/**
+	 * Endpoint method that deletes a pattern with the specified ID from the datastore.
+	 * @param id
+	 */
 	@ApiMethod(
 			name = "patterns.remove",
 			path = "patterns/{pattern_id}",

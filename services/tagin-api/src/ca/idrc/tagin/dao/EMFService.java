@@ -12,10 +12,18 @@ public class EMFService {
 		
 	}
 	
+	/**
+	 * Returns a singleton instance of EntityManagerFactory
+	 * @return
+	 */
 	public static EntityManagerFactory getInstance() {
 		return mFactory;
 	}
 	
+	/**
+	 * Returns a new EntityManager
+	 * @return
+	 */
 	public static EntityManager createEntityManager() {
 		return mFactory.createEntityManager();
 	}

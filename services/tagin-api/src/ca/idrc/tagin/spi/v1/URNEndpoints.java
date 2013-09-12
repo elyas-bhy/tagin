@@ -21,6 +21,12 @@ import com.google.api.server.spi.config.ApiMethod.HttpMethod;
 )
 public class URNEndpoints {
 
+	/**
+	 * Endpoint method that returns the distance between two URNs.
+	 * @param urn1
+	 * @param urn2
+	 * @return normalized distance between the two URNs if they are valid, or null.
+	 */
 	@ApiMethod(
 			name = "urns.distanceto",
 			path = "urns/{urn1}/distanceto/{urn2}",
@@ -38,6 +44,12 @@ public class URNEndpoints {
 		return d;
 	}
 
+	/**
+	 * Endpoint method that returns a list of neighbours of the specified URN.
+	 * @param urn
+	 * @param maxCount
+	 * @return
+	 */
 	@ApiMethod(
 			name = "urns.neighbours",
 			path = "urns/{urn}/neighbours",
@@ -52,6 +64,10 @@ public class URNEndpoints {
 		return neighbours;
 	}
 
+	/**
+	 * Endpoint method that deletes the specified URN
+	 * @param urn
+	 */
 	@ApiMethod(
 			name = "urns.remove",
 			path = "urns/{urn}",

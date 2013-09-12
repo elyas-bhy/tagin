@@ -37,21 +37,21 @@ public interface TaginDao {
 	/**
 	 * Retrieves a pattern with the specified ID.
 	 * @param id the pattern's ID.
-	 * @return the corresponding pattern if found, or null.
+	 * @return the matching pattern if found, or null.
 	 */
 	public Pattern getPattern(Long id);
 	
 	/**
 	 * Retrieves a fingerprint with the specified ID.
 	 * @param id the fingerprint's ID.
-	 * @return the corresponding fingerprint if found, or null.
+	 * @return the matching fingerprint if found, or null.
 	 */
 	public Fingerprint getFingerprint(Long id);
 	
 	/**
 	 * Retrieves a fingerprint with the specified URN.
 	 * @param urn the fingerprint's URN.
-	 * @return the corresponding fingerprint if found, or null.
+	 * @return the matching fingerprint if found, or null.
 	 */
 	public Fingerprint getFingerprint(String urn);
 	
@@ -64,7 +64,7 @@ public interface TaginDao {
 	
 	/**
 	 * Retrieves at most the specified number of neighbours of the specified fingerprint.
-	 * @param fp
+	 * @param fp the initial fingerprint.
 	 * @param maxCount the max number of neighbours.
 	 * @return a list of the corresponding neighbours' URNs.
 	 */
