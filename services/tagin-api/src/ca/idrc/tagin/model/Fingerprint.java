@@ -151,10 +151,13 @@ public class Fingerprint implements Serializable {
 	}
 
 	public String toString() {
-		return getClass().getSimpleName() +
-				"[ID: " + getId() +
-				", URN: " + getUrn() +
-				", pattern: " + getPattern().toString() + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[ID: " + getId());
+		sb.append(", URN: " + getUrn());
+		sb.append(", pattern: " + getPattern().toString());
+		sb.append("]");
+		return sb.toString();
 	}
 
 }

@@ -19,5 +19,13 @@ public class Distance {
 	public Double getValue() {
 		return distance;
 	}
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[Distance: " + getValue());
+		sb.append("]");
+		return sb.toString();
+	}
 
 }

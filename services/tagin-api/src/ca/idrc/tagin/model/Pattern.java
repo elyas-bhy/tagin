@@ -109,10 +109,13 @@ public class Pattern implements Serializable {
 	}
 
 	public String toString() {
-		return getClass().getSimpleName() +
-				"[Key: " + getKey() +
-				", maxRSSI: " + getMaxRssi() +
-				", beacons: " + getBeacons().toString() + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[Key: " + getKey());
+		sb.append(", maxRSSI: " + getMaxRssi());
+		sb.append(", beacons: " + getBeacons().toString());
+		sb.append("]");
+		return sb.toString();
 	}
 
 }

@@ -85,10 +85,13 @@ public class Beacon implements Serializable, Comparable<Beacon> {
 	}
 
 	public String toString() {
-		return getClass().getSimpleName() + "[" + 
-				"ID: " + getId() + 
-				", RSSI: " + getRssi() + 
-				", rank: " + getRank() + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[ID: " + getId());
+		sb.append(", RSSI: " + getRssi());
+		sb.append(", rank: " + getRank());
+		sb.append("]");
+		return sb.toString();
 	}
 
 }

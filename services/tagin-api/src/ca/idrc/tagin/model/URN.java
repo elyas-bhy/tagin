@@ -21,8 +21,11 @@ public class URN {
 	}
 
 	public String toString() {
-		return getClass().getSimpleName() +
-				"[URN: " + getValue() + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[URN: " + getValue());
+		sb.append("]");
+		return sb.toString();
 	}
 
 }
