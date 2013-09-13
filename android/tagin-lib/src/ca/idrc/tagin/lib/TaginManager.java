@@ -21,14 +21,29 @@ public class TaginManager {
 		mContext = context;
 	}
 	
+	/**
+	 * See {@link apiRequest(String, String, String)}
+	 * @param request
+	 */
 	public void apiRequest(String request) {
 		apiRequest(request, null, null);
 	}
 	
+	/**
+	 * See {@link apiRequest(String, String, String)}
+	 * @param request
+	 * @param param
+	 */
 	public void apiRequest(String request, String param) {
 		apiRequest(request, param, null);
 	}
 	
+	/**
+	 * Initiates an API request with the specified parameters.
+	 * @param request the request name.
+	 * @param param1 the first parameter.
+	 * @param param2 the second parameter.
+	 */
 	public void apiRequest(String request, String param1, String param2) {
 		Intent intent = new Intent(mContext, TaginService.class);
 		intent.putExtra(TaginService.EXTRA_TYPE, request);

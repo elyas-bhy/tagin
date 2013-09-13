@@ -92,6 +92,11 @@ public class TaginService extends Service {
 		}
 	};
 
+	/**
+	 * Asynchronous task that handles API requests.
+	 * @author elyas-bhy
+	 *
+	 */
 	private class ApiRequestTask extends AsyncTask<TaginApiCall, Void, String> {
 		
 		private TaginApiCall apiCall = null;

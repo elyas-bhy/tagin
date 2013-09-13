@@ -8,6 +8,12 @@ import android.util.Log;
 
 public class TaginUtils {
 	
+	/**
+	 * Deserializes a JSON response and returns it in its original container.
+	 * @param result the JSON response.
+	 * @param clazz the type of the original container.
+	 * @return the deserialized result if the operation is successful, or null.
+	 */
 	public static <T> T deserialize(String result, Class<T> clazz) {
 		T container = null;
 		if (result != null) {
