@@ -6,7 +6,7 @@ public class Neighbour implements Comparable<Neighbour> {
 	private Double rankDistance;
 	
 	public Neighbour(Fingerprint fingerprint, Double rankDistance) {
-		this.fingerprint= fingerprint;
+		this.fingerprint = fingerprint;
 		this.rankDistance = rankDistance;
 	}
 

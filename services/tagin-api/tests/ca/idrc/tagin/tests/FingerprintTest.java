@@ -101,7 +101,7 @@ public class FingerprintTest {
 		TaginDao dao = new TaginEntityManager();
 		Fingerprint f1 = dao.getFingerprint(p1.getKey().getParent().getId());
 		Fingerprint f3 = dao.getFingerprint(p3.getKey().getParent().getId());
-		Assert.assertTrue(f1.rankDistanceTo(f3) > Fingerprint.THRESHOLD);
+		Assert.assertTrue(f1.rankDistanceTo(f3) > Fingerprint.MERGE_THRESHOLD);
 		dao.close();
 	}
 	

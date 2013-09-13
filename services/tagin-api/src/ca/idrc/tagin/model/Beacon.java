@@ -21,7 +21,7 @@ public class Beacon implements Serializable, Comparable<Beacon> {
 	private Key key;
 
 	@Basic
-	private String id; // represented by BSSID + frequency
+	private String id; // formatted as: BSSID;frequency
 
 	@Basic
 	private Double rssi;

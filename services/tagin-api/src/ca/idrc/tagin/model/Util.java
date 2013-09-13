@@ -13,10 +13,20 @@ public class Util {
 		return Math.pow(rssi / maxRssi, 0.25);
 	}
 
+	/**
+	 * Converts dBm measures to power.
+	 * @param dbm
+	 * @return
+	 */
 	public static double dBm2Power(int dbm) {
 		return Math.pow(10.0, Double.valueOf(dbm - 30) / 10.0);
 	}
 
+	/**
+	 * Converts power measures to dBm.
+	 * @param power
+	 * @return
+	 */
 	public static int power2dBm(double power) {
 		return (int) Math.round(10 * Math.log10(power)) + 30;
 	}

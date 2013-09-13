@@ -22,7 +22,7 @@ import ca.idrc.tagin.dao.TaginEntityManager;
 public class Fingerprint implements Serializable {
 
 	private static final long serialVersionUID = 4658250121896413119L;
-	public static final Double THRESHOLD = 0.33;
+	public static final Double MERGE_THRESHOLD = 0.33;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,6 +43,10 @@ public class Fingerprint implements Serializable {
 		this.urn = null;
 	}
 
+	/**
+	 * Retrieves the instance's neighbours.
+	 * @return
+	 */
 	public List<Neighbour> findNeighbours() {
 		List<Neighbour> neighbours = new ArrayList<Neighbour>();
 		TaginDao dao = new TaginEntityManager();
@@ -51,12 +55,16 @@ public class Fingerprint implements Serializable {
 		return neighbours;
 	}
 
+	/**
+	 * Retrieves a list of neighbours that are under the merge threshold.
+	 * @return
+	 */
 	public List<Neighbour> findCloseNeighbours() {
 		List<Neighbour> closeNeighbours = new ArrayList<Neighbour>();
 		List<Neighbour> neighbours = findNeighbours();
 		Collections.sort(neighbours);
 		for (Neighbour n : neighbours) {
-			if (n.getRankDistance() < THRESHOLD) {
+			if (n.getRankDistance() < MERGE_THRESHOLD) {
 				closeNeighbours.add(n);
 			} else {
 				break;
@@ -69,6 +77,7 @@ public class Fingerprint implements Serializable {
 	 * Calculates the relative distance between two fingerprints.
 	 * The value is between 0 and 1 and is maximal when two fingerprints
 	 * don't share a beacon and minimal where they share a lot of beacons.
+	 * @return distance between two fingerprints, ranging from 0 to 1.
 	 */
 	public Double rankDistanceTo(Fingerprint fp) {
 		double d = 0.0;    // Euclidean distance between two beacons having same BSSID in two fingerprints.
@@ -92,6 +101,11 @@ public class Fingerprint implements Serializable {
 		return Math.sqrt(d) / Math.sqrt(maxD);
 	}
 
+	/**
+	 * Merges the passed fingerprint into the calling instance.
+	 * The resulting fingerprint is an averaged measure of both fingerprints.
+	 * @param fp
+	 */
 	public void merge(Fingerprint fp) {
 		Map<String,Beacon> beacons = new HashMap<String,Beacon>();
 		for (Beacon beacon : this.getPattern().getBeacons().values()) {
@@ -112,6 +126,10 @@ public class Fingerprint implements Serializable {
 		pattern.setBeacons(beacons);
 	}
 	
+	/**
+	 * Displaces the calling instance by the specified vectorial set.
+	 * @param changeVector
+	 */
 	public void displaceBy(List<Beacon> changeVector) {
 		Map<String,Beacon> beacons = new HashMap<String,Beacon>();
 		for (Beacon beacon : this.getPattern().getBeacons().values()) {

@@ -78,6 +78,10 @@ public class Pattern implements Serializable {
 		return beacons.containsKey(id);
 	}
 	
+	/**
+	 * Updates all of the instance's beacons ranks
+	 * according to the maximal RSSI measure found.
+	 */
 	public void updateRanks() {
 		ArrayList<Beacon> values = new ArrayList<Beacon>(beacons.values());
 		Collections.sort(values);
@@ -87,6 +91,12 @@ public class Pattern implements Serializable {
 		}
 	}
 	
+	/**
+	 * Returns a vector that represents the difference between
+	 * the instance pattern and the passed pattern.
+	 * @param p
+	 * @return
+	 */
 	public List<Beacon> calculateChangeVector(Pattern p) {
 		Map<String,Beacon> beacons = new HashMap<String,Beacon>();
 		ArrayList<Beacon> result = new ArrayList<Beacon>();
