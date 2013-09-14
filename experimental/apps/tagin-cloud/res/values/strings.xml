@@ -12,6 +12,7 @@
     <string name="urn_value">URN value</string>
     <string name="current_labels">Current labels:</string>
     <string name="new_label">New label</string>
+    <string name="missing_data">Missing data. Please fill out all fields before submitting.</string>
     
     <string name="fetching_urn">Fetching URN&#8230;</string>
     <string name="add_new_tag">Add a new tag</string>
@@ -20,6 +21,7 @@
     <string name="cancel">Cancel</string>
     
     <string name="showcase_title">Welcome to tagin-cloud!</string>
-    <string name="shwocase_message">There are no tags available yet for this location! Use the + button on the actionbar to add a new tag.</string>
+    <string name="showcase_message">There are no tags available yet for this location! Use the + button on the actionbar to add a new tag.</string>
+    <string name="to_rotate_sphere">To rotate the sphere, press on the edges of your device\'s screen.</string>
 
 </resources>

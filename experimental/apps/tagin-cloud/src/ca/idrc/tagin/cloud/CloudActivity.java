@@ -97,6 +97,9 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		updateTagCloud();
 		saveData();
 		Toast.makeText(this, "\"" + tag.getText() + "\" tag successfully added", Toast.LENGTH_SHORT).show();
+		if (mTagMap.size() == 1) {
+			Toast.makeText(this, R.string.to_rotate_sphere, Toast.LENGTH_LONG).show();
+		}
 	}
 	
 	/**
@@ -136,8 +139,10 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 			ShowcaseView.ConfigOptions options = new ShowcaseView.ConfigOptions();
 			options.hideOnClickOutside = false;
 			mShowcaseView = ShowcaseView.insertShowcaseViewWithType(ShowcaseView.ITEM_ACTION_ITEM, 
-					R.id.menu_add_tag, this, R.string.showcase_title, R.string.shwocase_message, options);
+					R.id.menu_add_tag, this, R.string.showcase_title, R.string.showcase_message, options);
 			mShowcaseView.setOnShowcaseEventListener(this);
+		} else {
+			Toast.makeText(this, R.string.to_rotate_sphere, Toast.LENGTH_LONG).show();
 		}
 		return true;
 	}

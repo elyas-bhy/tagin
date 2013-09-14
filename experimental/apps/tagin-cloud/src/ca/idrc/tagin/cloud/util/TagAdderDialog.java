@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import ca.idrc.tagin.cloud.CloudActivity;
 import ca.idrc.tagin.cloud.R;
 import ca.idrc.tagin.cloud.tag.Tag;
@@ -70,8 +71,12 @@ public class TagAdderDialog extends AlertDialog {
 				
 				@Override
 				public void onClick(DialogInterface dialog, int which) {
-					Tag tag = new Tag(mURNTextView.getText().toString(), mLabelEditText.getText().toString(), 20);
-					mContext.submitTag(tag);
+					if (mURNTextView.getText().length() != 0 && mLabelEditText.getText().length() != 0) {
+						Tag tag = new Tag(mURNTextView.getText().toString(), mLabelEditText.getText().toString(), 20);
+						mContext.submitTag(tag);
+					} else {
+						Toast.makeText(mContext, R.string.missing_data, Toast.LENGTH_SHORT).show();
+					}
 				}
 			});
 			
