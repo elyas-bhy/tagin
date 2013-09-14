@@ -1,7 +1,7 @@
 package ca.idrc.tagin.cloud.tag;
 
 /**
- * Komodo Lab: Tagin! Project: 3D Tag Cloud
+ * Komodo OpenLab: Tagin! Project: 3D Tag Cloud
  * Google Summer of Code 2011
  * @authors Reza Shiftehfar, Sara Khosravinasr and Jorge Silva
  */
@@ -38,12 +38,12 @@ public class TagCloudView extends RelativeLayout {
 		
 		mScrollSpeed = SCROLL_SPEED;
        
-		//set the center of the sphere on center of our screen:
+		// set the center of the sphere on center of our screen:
 		mCenterX = width / 2;
 		mCenterY = height / 2;
 		mRadius = Math.min(mCenterX * 0.95f , mCenterY * 0.95f); //use 95% of screen
-		//since we set tag margins from left of screen, we shift the whole tags to left so that
-		//it looks more realistic and symmetric relative to center of screen in X direction
+		// since we set tag margins from left of screen, we shift the whole tags to left so that
+		// it looks more realistic and symmetric relative to center of screen in X direction
 		mShiftLeft = (int) (Math.min(mCenterX * 0.15f , mCenterY * 0.15f));
 		
 		// initialize the TagCloud from a list of tags

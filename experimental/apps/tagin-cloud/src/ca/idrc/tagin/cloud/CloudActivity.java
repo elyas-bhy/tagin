@@ -1,11 +1,5 @@
 package ca.idrc.tagin.cloud;
 
-/**
- * Komodo Lab: Tagin! Project: 3D Tag Cloud
- * Google Summer of Code 2011
- * @authors Reza Shiftehfar, Sara Khosravinasr and Jorge Silva
- */
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -60,6 +54,9 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		createTagCloud();
 	}
 	
+	/**
+	 * Initializes the tags map according to the current connectivity state.
+	 */
 	private void initCloud() {
 		if (TaginCloudApp.persistence.isConnected()) {
 			mTagMap = (TagMap) getIntent().getSerializableExtra(LauncherActivity.EXTRA_TAGS);
@@ -69,6 +66,9 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		}
 	}
 
+	/**
+	 * Creates and displays a new tag cloud.
+	 */
 	private void createTagCloud() {
 		Display display = getWindowManager().getDefaultDisplay();
 		mTagCloudView = new TagCloudView(this, display.getWidth(), display.getHeight(), mTagMap);
@@ -77,12 +77,20 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		updateTagCloud();
 	}
 	
+	/**
+	 * Initiates a server request for assigning a tag's label.
+	 * @param tag
+	 */
 	public void submitTag(Tag tag) {
 		SetLabelTask<CloudActivity> task = new SetLabelTask<CloudActivity>(mInstance, tag.getID(), tag.getText());
 		task.execute();
 		addTagToCloud(tag);
 	}
 	
+	/**
+	 * Adds a new tag to the cloud.
+	 * @param tag
+	 */
 	public void addTagToCloud(Tag tag) {
 		mTagCloudView.addTag(tag);
 		mTagMap.put(tag.getID(), tag);
@@ -91,12 +99,19 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		Toast.makeText(this, "\"" + tag.getText() + "\" tag successfully added", Toast.LENGTH_SHORT).show();
 	}
 	
+	/**
+	 * Updates the state of the cloud.
+	 */
 	private void updateTagCloud() {
 		for (Tag tag : mTagMap.values()) {
 			mTagCloudView.setTagRGBT(tag);
 		}
 	}
 	
+	/**
+	 * Initiates an API request for a new URN.
+	 * @param view
+	 */
 	public void onGetURNClick(View view) {
 		mTaginManager.apiRequest(TaginService.REQUEST_URN);
 		mTagAdderDialog.getURNTextView().setText(R.string.fetching_urn);
@@ -147,6 +162,9 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		startActivity(intent);
 	}
 	
+	/**
+	 * Writes the tags map to the device's memory.
+	 */
 	public void saveData() {
 		ObjectOutputStream oos = null;
 		try {
@@ -171,6 +189,10 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 		}
 	}
 	
+	/**
+	 * Loads a map of tags stored on the device's memory.
+	 * @return saved data if found, or null.
+	 */
 	private TagMap loadData() {
 		File file = new File(getFilesDir() + "/tags.dat");
 		TagMap feedsEntry = null;
@@ -206,7 +228,7 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 	public void onGetLabelsTaskComplete(String urn, List<String> labels) {
 		TextView textView = mTagAdderDialog.getLabelTextView();
 		if (labels.size() > 0) {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			sb.append(labels.get(0));
 			for (int i = 1; i < labels.size(); i++) {
 				sb.append(", " + labels.get(i));
@@ -224,13 +246,11 @@ public class CloudActivity extends Activity implements GetLabelsTaskListener, Se
 
 	@Override
 	public void onShowcaseViewHide(ShowcaseView showcaseView) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void onShowcaseViewShow(ShowcaseView showcaseView) {
-		// TODO Auto-generated method stub
 		
 	}
 

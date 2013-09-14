@@ -45,6 +45,11 @@ public class LauncherActivity extends Activity implements GetLabelsTaskListener 
 		init();
 	}
 	
+	/**
+	 * Initializes a tags map according to the current connectivity state.
+	 * If connected, initiates an API request for a new URN.
+	 * Else, starts the cloud with an empty map.
+	 */
 	private void init() {
 		if (TaginCloudApp.persistence.isConnected()) {
 			if (TaginCloudApp.persistence.isWifiEnabled()) {
@@ -59,6 +64,9 @@ public class LauncherActivity extends Activity implements GetLabelsTaskListener 
 		}
 	}
 	
+	/**
+	 * Starts a new cloud activity.
+	 */
 	public void startCloud() {
 		Intent intent = new Intent(LauncherActivity.this, CloudActivity.class);
 		intent.putExtra(EXTRA_TAGS, mTagMap);
@@ -103,11 +111,17 @@ public class LauncherActivity extends Activity implements GetLabelsTaskListener 
 		}
 	}
 	
+	/**
+	 * Handles the neighbours API response.
+	 * If neighbours are available, initiates a server request to fetch their respective labels.
+	 * Else, starts the cloud.
+	 * @param result
+	 */
 	public void handleNeighboursReady(String result) {
 		URNCollection urns = TaginUtils.deserialize(result, URNCollection.class);
 		
 		if (urns != null && urns.getItems() != null && urns.getItems().size() > 0) {
-			// Temporary workaround to handle duplicated URN
+			// Temporary workaround to handle duplicated URNs
 			List<String> items = new ArrayList<String>();
 			for (URN urn : urns.getItems()) {
 				if (!urn.getValue().equals(mInitialURN)) {

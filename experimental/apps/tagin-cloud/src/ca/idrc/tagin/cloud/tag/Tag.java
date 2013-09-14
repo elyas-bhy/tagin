@@ -9,7 +9,7 @@ import android.graphics.Color;
 import android.widget.TextView;
 
 /**
- * Komodo Lab: Tagin! Project: 3D Tag Cloud
+ * Komodo OpenLab: Tagin! Project: 3D Tag Cloud
  * Google Summer of Code 2011
  * @authors Reza Shiftehfar, Sara Khosravinasr and Jorge Silva
  */
@@ -19,7 +19,7 @@ public class Tag implements Serializable, Comparable<Tag> {
 	private static final long serialVersionUID = -4652373547442417254L;
 	
 	private static final int DEFAULT_POPULARITY = 1;
-	private float x, y, z; //the center of the 3D Tag
+	private float x, y, z; // the center of the 3D Tag
 	private float x2D, y2D;
 	
 	private String mID;
@@ -189,8 +189,11 @@ public class Tag implements Serializable, Comparable<Tag> {
 	}
 	
 	public String toString() {
-		return getClass().getSimpleName() + "[" +
-				"ID: " + mID +
-				", Text: " + mText + "]";
+		StringBuilder sb = new StringBuilder();
+		sb.append(getClass().getSimpleName());
+		sb.append("[ID: " + mID);
+		sb.append(", Text: " + mText);
+		sb.append("]");
+		return sb.toString();
 	}
 }

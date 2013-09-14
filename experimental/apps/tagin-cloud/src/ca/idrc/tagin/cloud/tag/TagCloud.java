@@ -1,7 +1,7 @@
 package ca.idrc.tagin.cloud.tag;
 
 /**
- * Komodo Lab: Tagin! Project: 3D Tag Cloud
+ * Komodo OpenLab: Tagin! Project: 3D Tag Cloud
  * Google Summer of Code 2011
  * @authors Reza Shiftehfar, Sara Khosravinasr and Jorge Silva
  */

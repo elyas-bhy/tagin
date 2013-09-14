@@ -10,7 +10,6 @@ import ca.idrc.tagin.cloud.CloudActivity;
 import ca.idrc.tagin.cloud.R;
 import ca.idrc.tagin.cloud.tag.Tag;
 
-
 public class TagAdderDialog extends AlertDialog {
 	
 	private TextView mURNTextView;
