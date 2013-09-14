@@ -35,7 +35,7 @@ public class LauncherDialog extends AlertDialog {
 		
 		public LauncherDialogBuilder(Activity context) {
 			super(context);
-			CharSequence[] items = {"tagin-api", "tagin-tags"};
+			CharSequence[] items = {"tagin! API Explorer", "tagin! Tags Manager"};
 
 			setCancelable(true);
 			setTitle(R.string.select_service);
