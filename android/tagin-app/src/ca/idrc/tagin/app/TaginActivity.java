@@ -58,16 +58,28 @@ public class TaginActivity extends Activity {
 		return true;
 	}
 
+	/**
+	 * Initiates an API request for a new URN.
+	 * @param view
+	 */
 	public void onRequestURN(View view) {
 		mURNRequestButton.setText(R.string.requesting_urn);
 		mTaginManager.apiRequest(TaginService.REQUEST_URN);
 	}
 	
+	/**
+	 * Initiates an API request for a list of all fingerprints.
+	 * @param view
+	 */
 	public void onListFingerprints(View view) {
 		mListFingerprintsButton.setText(R.string.requesting_fp_list);
 		mTaginManager.apiRequest(TaginService.REQUEST_LIST_FINGERPRINTS);
 	}
 	
+	/**
+	 * Initiates an API request for finding nearby neighbours.
+	 * @param view
+	 */
 	public void onFindNeighbours(View view) {
 		if (mNeighboursEditText.getText().length() < 30) {
 			Toast.makeText(this, R.string.invalid_urn, Toast.LENGTH_SHORT).show();
@@ -95,14 +107,22 @@ public class TaginActivity extends Activity {
 		}
 	};
 	
+	/**
+	 * Updates the UI with the result of the fingerprints.list API request.
+	 * @param result
+	 */
 	private void handleFingerprintsResponse(String result) {
 		FingerprintCollection fps = TaginUtils.deserialize(result, FingerprintCollection.class);
 		if (fps != null) {
-			StringBuffer sb = new StringBuffer();
+			StringBuilder sb = new StringBuilder();
 			List<Fingerprint> items = fps.getItems();
 			if (items != null) {
 				for (Fingerprint fp : items) {
-					sb.append("ID:     " + fp.getId() + "\nURN:   " + fp.getUrn() + "\n\n");
+					sb.append("ID:     ");
+					sb.append(fp.getId());
+					sb.append("\nURN:   ");
+					sb.append(fp.getUrn());
+					sb.append("\n\n");
 				}
 			}
 			mListFPTextView.setText(sb.toString());
@@ -112,6 +132,10 @@ public class TaginActivity extends Activity {
 		mListFingerprintsButton.setText(R.string.fp_list);
 	}
 	
+	/**
+	 * Updates the UI with the result of the URN API request.
+	 * @param urn
+	 */
 	private void handleURNResponse(String urn) {
 		if (urn != null) {
 			mURNTextView.setText(urn);
@@ -121,6 +145,10 @@ public class TaginActivity extends Activity {
 		mURNRequestButton.setText(R.string.request_urn);
 	}
 	
+	/**
+	 * Updates the UI with the result of the neighbours API request.
+	 * @param result
+	 */
 	private void handleNeighboursResponse(String result) {
 		if (result != null) {
 			mNeighboursEditText.setText(result);

@@ -48,6 +48,10 @@ public class TagsActivity extends Activity implements GetLabelsTaskListener, Set
 		return true;
 	}
 	
+	/**
+	 * Initiates a server request for fetching a URN's label.
+	 * @param view
+	 */
 	public void onGetLabel(View view) {
 		mGetLabelButton.setText(R.string.fetching_label);
 		String urn = mURNText1.getText().toString();
@@ -55,6 +59,10 @@ public class TagsActivity extends Activity implements GetLabelsTaskListener, Set
 		task.execute();
 	}
 	
+	/**
+	 * Initiates a server request for assigning a URN's label.
+	 * @param view
+	 */
 	public void onSetLabel(View view) {
 		mSetLabelButton.setText(R.string.saving_tag);
 		String urn = mURNText2.getText().toString();
