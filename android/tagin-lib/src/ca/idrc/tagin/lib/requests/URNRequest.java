@@ -20,6 +20,9 @@ public class URNRequest implements TaginApiCall {
 		mPattern = pattern;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String execute() {
 		String result = null;
@@ -33,6 +36,9 @@ public class URNRequest implements TaginApiCall {
 		return result;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getBroadcastAction() {
 		return TaginService.ACTION_URN_READY;

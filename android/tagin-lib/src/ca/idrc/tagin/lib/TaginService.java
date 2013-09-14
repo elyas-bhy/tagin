@@ -93,7 +93,7 @@ public class TaginService extends Service {
 	};
 
 	/**
-	 * Asynchronous task that handles API requests.
+	 * Asynchronous task that handles API requests on a background thread.
 	 * @author elyas-bhy
 	 *
 	 */

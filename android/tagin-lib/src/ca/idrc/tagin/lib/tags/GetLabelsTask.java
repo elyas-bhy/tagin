@@ -19,7 +19,12 @@ import ca.idrc.tagin.lib.TaginManager;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
-
+/**
+ * Asynchronous task responsible for fetching the labels of the specified URN.
+ * @author elyas-bhy
+ *
+ * @param <T>
+ */
 public class GetLabelsTask<T extends Context & GetLabelsTaskListener> extends AsyncTask<Void, Void, List<String>> {
 	
 	private T mContext;

@@ -18,6 +18,9 @@ public class ListFingerprintsRequest implements TaginApiCall {
 		mTagin = tagin;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String execute() {	
 		String result = null;
@@ -30,6 +33,9 @@ public class ListFingerprintsRequest implements TaginApiCall {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getBroadcastAction() {
 		return TaginService.ACTION_FINGERPRINTS_READY;

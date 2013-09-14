@@ -15,6 +15,12 @@ import android.content.Context;
 import android.os.AsyncTask;
 import ca.idrc.tagin.lib.TaginManager;
 
+/**
+ * Asynchronous task responsible for assigning a label to the specified URN
+ * @author elyas-bhy
+ *
+ * @param <T>
+ */
 public class SetLabelTask<T extends Context & SetLabelTaskListener> extends AsyncTask<Void, Void, Boolean> {
 
 	private T mContext;

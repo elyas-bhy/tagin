@@ -21,6 +21,9 @@ public class FindNeighboursRequest implements TaginApiCall {
 		mMaxCount = Integer.parseInt(count);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String execute() {
 		String result = null;
@@ -33,6 +36,9 @@ public class FindNeighboursRequest implements TaginApiCall {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public String getBroadcastAction() {
 		return TaginService.ACTION_NEIGHBOURS_READY;
